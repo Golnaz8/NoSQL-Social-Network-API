@@ -7,7 +7,7 @@ const {
   deleteThought,
   addThoughtReaction,
   removeThoughtReaction,
-} = require('../../controllers/videoController');
+} = require('../../controllers/thoughtController');
 
 // /api/thoughts
 router.route('/').get(getThoughts).post(createThought);

@@ -36,7 +36,7 @@ module.exports = {
         }
     },
     // Delete a user
-    async deleteCourse(req, res) {
+    async deleteUser(req, res) {
         try {
             const user = await User.findOneAndDelete({ _id: req.params.userId });
 
@@ -75,9 +75,9 @@ module.exports = {
 
         try {
             const user = await User.findOneAndUpdate(
-                { _id: req.params.userId },
-                { $addToSet: { friends: req.body } },
-                { runValidators: true, new: true }
+              { _id: req.params.userId },
+              { $addToSet: { friends: { friendId: req.params.friendId } } },
+              { runValidators: true, new: true }
             );
 
             if (!user) {
@@ -96,7 +96,7 @@ module.exports = {
         try {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $pull: { friend: { friendId: req.params.friendId } } },
+                { $pull: { friends: { friendId: req.params.friendId } } },
                 { runValidators: true, new: true }
             );
 
