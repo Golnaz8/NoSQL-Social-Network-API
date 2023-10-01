@@ -13,7 +13,6 @@ const thoughtSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-        get: (timestamp) => formatDate(timestamp),
     },
     username: {
         type: String,
@@ -24,19 +23,33 @@ const thoughtSchema = new Schema({
     {
         toJSON: {
             virtuals: true,
+            getters: true,
         },
         id: false,
     }
 );
 
+// Define a getter method to format the timestamp
+thoughtSchema.path('createdAt').get(function (timestamp) {
+    return formatDate(timestamp);
+  });
+  
+  function formatDate(timestamp) {
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    };
+    return new Date(timestamp).toLocaleString(undefined, options);
+  }
+
 // Virtual to retrieve the length of the thought's reactions array field on query
 thoughtSchema.virtual('reactionCount').get(function () {
     return this.reactions.length;
 });
-
-function formatDate(timestamp) {
-    return new Date(timestamp).toLocaleDateString();
-}
 
 // Initialize our Thought model
 const Thought = model('thought', thoughtSchema);

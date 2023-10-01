@@ -75,7 +75,7 @@ module.exports = {
       }
 
       const user = await User.findOneAndUpdate(
-        { videos: req.params.thoughtId },
+        { thoughts: req.params.thoughtId },
         { $pull: { thoughts: req.params.thoughtId } },
         { new: true }
       );
@@ -114,7 +114,7 @@ module.exports = {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $pull: { reactons: { reactionId: req.params.reactionId } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       )
 
@@ -122,7 +122,7 @@ module.exports = {
         return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json(thought);
+      res.json({ message: 'reaction successfully deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
