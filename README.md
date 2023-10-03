@@ -29,4 +29,16 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Mock Up
 
-The following walkthrough video shows examples of the application's API routes being tested in Insomnia.
+The following walkthrough video shows examples of the application's API routes being tested in Insomnia:
+https://drive.google.com/file/d/1CdQMHIEFcsC2xbP67ggf21D9ih2LSXym/view
+
+## Installation
+To install necessary dependencies, run the following command: npm i
+
+## Questions
+If you have any question, feel free to contact through this email address: golnaz.brj@gmail.com
+
+---
+
+© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+
